@@ -1,0 +1,12 @@
+{
+    "apps": [{
+        "name" : "nodepm2",
+        "script" : "./index.js",
+        "env" : {
+            "PORT" : 8080
+        },
+        "env_production" : {
+            "PORT" : 4000
+        }
+    }]
+}

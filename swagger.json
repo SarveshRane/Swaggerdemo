@@ -1,0 +1,105 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "API DOCUMENTATION",
+        "description": "",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:8080",
+    "basePath": "/api/v1",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "Token"
+                ],
+                "description": "Create token",
+                "parameters": [
+                    {
+                        "name": "login",
+                        "in": "body",
+                        "description": "Token for authentication",
+                        "schema": {
+                            "$ref": "#/definitions/Login"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Token is generated",
+                        "schema": {
+                            "$ref": "#/definitions/Login"
+                        }
+                    }
+                }
+            }
+        },
+        "/saveData": {
+            "post": {
+                "tags": [
+                    "Insert Data"
+                ],
+                "description": "Insert Data",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "Token as header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "saveData",
+                        "in": "body",
+                        "description": "Insert Data to Table",
+                        "schema": {
+                            "$ref": "#/definitions/InsertData"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data Saved",
+                        "schema": {
+                            "$ref": "#/definitions/InsertData"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Login": {
+            "required": [
+                "name",
+                "pass"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "pass": {
+                    "type": "string"
+                }
+            }
+        },
+        "InsertData": {}
+    }
+}
